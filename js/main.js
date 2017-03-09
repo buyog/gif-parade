@@ -170,6 +170,7 @@ const App = {
 		});
 	},
 	search(query) {
+		this.paradeGrounds.classList.remove("hidden");
 		this.parades.push( new Parade(query, this.paradeGrounds, this.parades.length) );
 	}
 };
