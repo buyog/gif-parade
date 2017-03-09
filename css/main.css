@@ -74,6 +74,14 @@ h2 {
   background-color: rgba(0,0,0,0.75);
 }
 
+.lightbox-image-caption {
+	text-align: center;
+	padding: 10px;
+	color: white;
+	background-color: black;
+	margin-top: 10px;
+}
+
 .lightbox-button {
   border: none;
   background: transparent;

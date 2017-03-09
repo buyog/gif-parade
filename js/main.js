@@ -52,7 +52,7 @@ function createButton(parent, label, classes, fnClick) {
 function createImg(data, idx) {
 	if (data[idx] && data[idx].images.original.url) {
 		let img = createNode("img", "thumb", {
-			src: data[idx].images.original.url,
+			src: data[idx].images.downsized.url,
 			title: data[idx].slug
 		});
 		img.dataset.index = idx;
@@ -90,8 +90,12 @@ function Lightbox() {
 	createButton(this.root, "&times;", "lightbox-button lightbox-close", this.hide.bind(this));
 	this.btnPrev = createButton(this.root, "&lsaquo;", "lightbox-button lightbox-prev", this.prev.bind(this));
 	
+	let imgPane = createNode("figure", "lightbox-image-pane");
 	this.img = createNode("img", "lightbox-image");
-	this.root.appendChild(this.img);
+	this.caption = createNode("figcaption", "lightbox-image-caption");
+	imgPane.appendChild(this.img);
+	imgPane.appendChild(this.caption);
+	this.root.appendChild(imgPane);
 
 	this.btnNext = createButton(this.root, "&rsaquo;", "lightbox-button lightbox-next", this.next.bind(this));
 
@@ -114,6 +118,7 @@ Lightbox.prototype = {
 
 		this.img.src = ''; // set it to null first so any previously displayed image is cleared even before the new image loads
 		this.img.src = this.parade.gifs[idx].images.original.url;
+		this.caption.innerText = this.parade.gifs[idx].slug;
 	},
 	hide() {
 		this.root.classList.add("hidden");
